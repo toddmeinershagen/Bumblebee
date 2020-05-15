@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 using NUnit.Framework;
@@ -36,3 +38,4 @@ using NUnit.Framework;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: Parallelizable(ParallelScope.Fixtures)]
+//[assembly: LevelOfParallelism(8)]

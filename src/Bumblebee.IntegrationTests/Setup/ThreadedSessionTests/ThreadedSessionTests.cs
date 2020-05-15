@@ -14,8 +14,8 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.PhantomJS;
 
 // ReSharper disable InconsistentNaming
 
@@ -36,8 +36,8 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 		public void When_loading_with_driver_Then_should_return_session_with_correct_driver_with_default_settings()
 		{
 			Threaded<Session>
-				.With(new PhantomJS())
-				.Verify(x => x.Driver is PhantomJSDriver)
+				.With(new HeadlessChrome())
+				.Verify(x => x.Driver is HeadlessChromeDriver)
 				.VerifyThat(x => x.Settings.ShouldBeEquivalentTo(new Settings()))
 				.End();
 		}
@@ -46,8 +46,8 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 		public void When_loading_with_generic_driver_Then_should_return_session_with_correct_driver_with_default_settings()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
-				.Verify(x => x.Driver is PhantomJSDriver)
+				.With<HeadlessChrome>()
+				.Verify(x => x.Driver is ChromeDriver)
 				.VerifyThat(x => x.Settings.ShouldBeEquivalentTo(new Settings()))
 				.End();
 		}
@@ -61,7 +61,7 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 			};
 
 			Threaded<Session>
-				.With(new PhantomJS(), customSettings)
+				.With(new HeadlessChrome(), customSettings)
 				.VerifyThat(x => x.Settings.Should().Be(customSettings))
 				.End();
 		}
@@ -75,7 +75,7 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 			};
 
 			Threaded<Session>
-				.With<PhantomJS>(customSettings)
+				.With<HeadlessChrome>(customSettings)
 				.VerifyThat(x => x.Settings.Should().Be(customSettings))
 				.End();
 		}
@@ -83,12 +83,10 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 		[Test]
 		public void Given_session_already_loaded_When_loading_with_another_driver_Then_should_end_previous_session_driver_and_return_session_with_correct_driver()
 		{
-			Session previousSession;
-
 			Threaded<Session>
-				.With<PhantomJS>()
-				.Store(out previousSession, s => s)
-				.Verify(x => x.Driver is PhantomJSDriver);
+				.With<HeadlessChrome>()
+				.Store(out var previousSession, s => s)
+				.Verify(x => x.Driver is HeadlessChromeDriver);
 
 			Threaded<Session>
 				.With<InternetExplorer>()
@@ -103,7 +101,7 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 		public void Given_session_already_loaded_with_navigation_When_getting_matching_current_block_Then_should_return_block()
 		{
 			Threaded<Session>
-				.With<PhantomJS>()
+				.With<HeadlessChrome>()
 				.NavigateTo<CheckboxPage>(GetUrl("Checkbox.html"));
 
 			Threaded<Session>
@@ -145,7 +143,7 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 			Action action = () =>
 			{
 				var session = Threaded<Session>
-					.With<PhantomJS>();
+					.With<HeadlessChrome>();
 				sessions.TryAdd(Guid.NewGuid(), session);
 			};
 
@@ -170,12 +168,12 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 		public void Given_multiple_sessions_in_single_thread_When_loading_with_drivers_Then_should_maintain_distinct_sessions()
 		{
 			var session1 = Threaded<Session>
-				.With<PhantomJS>()
-				.Verify(s => s.Driver is PhantomJSDriver);
+				.With<HeadlessChrome>()
+				.Verify(s => s.Driver is ChromeDriver);
 
 			var session2 = Threaded<DerivedSession>
-				.With<PhantomJS>()
-				.Verify(s => s.Driver is PhantomJSDriver);
+				.With<HeadlessChrome>()
+				.Verify(s => s.Driver is ChromeDriver);
 
 			session1
 				.Verify(s => s is Session);
@@ -193,7 +191,7 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 		public void Given_session_type_with_wrong_constructor_args_When_loading_with_driver_Then_should_throw()
 		{
 			Action action = () => Threaded<DerivedSessionWithWrongArgs>
-				.With<PhantomJS>();
+				.With<HeadlessChrome>();
 
 			var expectedMessage = String.Format(Threaded<DerivedSessionWithWrongArgs>.InvalidSessionTypeFormat, typeof (DerivedSessionWithWrongArgs));
 
@@ -206,8 +204,8 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 		public void Given_session_type_When_loading_with_driver_explicitly_Then_should_load_with_driver()
 		{
 			Threaded<Session>
-				.With(new PhantomJS())
-				.Verify(s => s.Driver is PhantomJSDriver)
+				.With(new HeadlessChrome())
+				.Verify(s => s.Driver is HeadlessChromeDriver)
 				.End();
 		}
 
@@ -221,10 +219,10 @@ namespace Bumblebee.IntegrationTests.Setup.ThreadedSessionTests
 		}
 
 		[Test]
-		public void Given_session_has_been_loaded_with_driver_When_ending_THen_should_end_session()
+		public void Given_session_has_been_loaded_with_driver_When_ending_Then_should_end_session()
 		{
 			Threaded<Session>
-				.With<PhantomJS>();
+				.With<HeadlessChrome>();
 
 			Threaded<Session>
 				.End();

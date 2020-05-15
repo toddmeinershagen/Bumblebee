@@ -61,7 +61,7 @@ namespace Bumblebee.IntegrationTests.Specifications.SpecificationTests
 		public void TestSetUp()
 		{
 			Threaded<Session>
-				.With(new PhantomJS(TimeSpan.FromSeconds(0)))
+				.With(new HeadlessChrome(TimeSpan.Zero))
 				.NavigateTo<SlowPageWithExplicitWait>(GetUrl("SlowPage.html"));
 		}
 

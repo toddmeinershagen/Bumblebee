@@ -1,7 +1,9 @@
-using Bumblebee.IntegrationTests.Shared;
+using System;
+
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
+using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -11,15 +13,13 @@ using NUnit.Framework;
 
 namespace Bumblebee.IntegrationTests.Implementation.PageTests
 {
-	[TestFixture(typeof(HeadlessChromeWithNoWaitTime))]
-	public class Given_slow_page_with_explicit_wait<T> : HostTestFixture
-	    where T : IDriverEnvironment, new()
+	public class Given_slow_page_with_explicit_wait : HostTestFixture
     {
 		[SetUp]
 		public void TestSetUp()
 		{
 			Threaded<Session>
-				.With<T>()
+				.With(new HeadlessChrome(TimeSpan.Zero))
 				.NavigateTo<SlowPageWithExplicitWait>(GetUrl("SlowPage.html"));
 		}
 

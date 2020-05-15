@@ -1,9 +1,9 @@
 ﻿using System;
 
-using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
+using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 
@@ -20,7 +20,7 @@ namespace Bumblebee.IntegrationTests.Implementation
         public void TestSetUp()
         {
             Threaded<Session>
-                .With<HeadlessChrome>()
+                .With(new HeadlessChrome(TimeSpan.Zero))
                 .NavigateTo<SlowBlockPage>(GetUrl("SlowBlock.html"));
         }
 

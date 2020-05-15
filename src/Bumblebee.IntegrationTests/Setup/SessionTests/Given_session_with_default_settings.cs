@@ -3,9 +3,9 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 
-using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.Setup;
+using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 

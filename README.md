@@ -3,8 +3,6 @@ Bumblebee
 
 ![Bumblebee](https://avatars1.githubusercontent.com/u/10162916?v=3&s=100 "Bumblebee")
 
-[![Build status](https://ci.appveyor.com/api/projects/status/jwa56d5op03f3yae?svg=true)](https://ci.appveyor.com/project/toddmeinershagen/bumblebee-u5i5r)
-
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Bumblebee/Discuss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
 
 Bumblebee is a .NET layer on top of the Selenium browser automation framework that allows for the standardized creation of page objects, even for dynamic web pages. There are a few features that define Bumblebee's usability.

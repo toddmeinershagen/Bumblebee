@@ -116,8 +116,6 @@
     <Compile Include="Implementation\SelectBoxTests\Given_select_box_with_one_hundred_thousand_items.cs" />
     <Compile Include="Implementation\PageTests\Given_slow_page_with_explicit_wait.cs" />
     <Compile Include="Implementation\PageTests\Given_slow_page_with_no_wait.cs" />
-    <Compile Include="Shared\HeadlessChrome.cs" />
-    <Compile Include="Shared\HeadlessChromeWithNoWaitTime.cs" />
     <Compile Include="Shared\Hosting\OwinStartUp.cs" />
     <Compile Include="Shared\Hosting\OwinHost.cs" />
     <Compile Include="Shared\Pages\CurrentBlockDefaultPage.cs" />

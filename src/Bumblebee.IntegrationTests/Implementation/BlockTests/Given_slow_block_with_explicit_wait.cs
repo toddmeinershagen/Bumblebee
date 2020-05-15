@@ -1,7 +1,7 @@
-﻿using Bumblebee.IntegrationTests.Shared;
-using Bumblebee.IntegrationTests.Shared.Hosting;
+﻿using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.Setup;
+using Bumblebee.Setup.DriverEnvironments;
 
 using FluentAssertions;
 

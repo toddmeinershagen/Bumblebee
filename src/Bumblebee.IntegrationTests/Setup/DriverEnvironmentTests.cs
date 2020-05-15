@@ -7,7 +7,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
+//using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 
@@ -17,6 +17,7 @@ namespace Bumblebee.IntegrationTests.Setup
 
 	//[TestFixture(typeof (Firefox), typeof (FirefoxDriver))]
 	[TestFixture(typeof (InternetExplorer), typeof (InternetExplorerDriver))]
+	[TestFixture(typeof (HeadlessChrome), typeof(HeadlessChromeDriver))]
 	[TestFixture(typeof (Chrome), typeof (ChromeDriver))]
 	[TestFixture(typeof (PhantomJS), typeof (PhantomJSDriver))]
 	public class DriverEnvironmentTests<TDriverEnvironment, TExpectedDriver>
@@ -37,6 +38,7 @@ namespace Bumblebee.IntegrationTests.Setup
 
 	//[TestFixture(typeof (Firefox))]
 	[TestFixture(typeof (InternetExplorer))]
+	[TestFixture(typeof(HeadlessChrome))]
 	[TestFixture(typeof (Chrome))]
 	[TestFixture(typeof (PhantomJS))]
 	public class DriverEnvironmentTests<TDriverEnvironment>

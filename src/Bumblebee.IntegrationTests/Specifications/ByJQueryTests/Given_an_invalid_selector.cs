@@ -1,5 +1,6 @@
 using System;
 
+using Bumblebee.IntegrationTests.Shared;
 using Bumblebee.IntegrationTests.Shared.Hosting;
 using Bumblebee.IntegrationTests.Shared.Pages;
 using Bumblebee.JQuery;
@@ -21,7 +22,7 @@ namespace Bumblebee.IntegrationTests.Specifications.ByJQueryTests
 		public void TestFixtureSetUp()
 		{
 			Threaded<Session>
-				.With<Chrome>()
+				.With<HeadlessChrome>()
 				.NavigateTo<PageWithJQuery>(GetUrl("PageWithJQuery.html"));
 		}
 
